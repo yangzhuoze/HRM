@@ -1,7 +1,7 @@
-# -*- coding: utf-i -*-
+# -*- coding: utf-8 -*-
 
-from sqlalchemy import Columnt, Integer, String, Date, Text, Datetime, Boolean, ForeignKey
-from sqlalchemy.orm import relationship
+from sqlalchemy import create_engine, Column, Integer, String, Date, Text, DateTime, Boolean, ForeignKey, Numeric
+from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -11,7 +11,7 @@ class Group(Base):
 
     id = Column(Integer, primary_key = True)
     name = Column(String(45), nullable = False)
-    companies = relationship('Companies', backref = 'parent')
+    companies = relationship('Company', backref = 'parent')
 
 class Company(Base):
     __tablename__ = 'company'
@@ -25,39 +25,68 @@ class Department(Base):
     __tablename__ = 'department'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(45), nullable = False)
-    parent_id = Column(Integer, ForeignKey('department.id'))
-    clerks = relationship('Department', backref = 'department')
+    name = Column(String(30), nullable = False)
+    parent_id = Column(Integer, ForeignKey('company.id'))
+    clerks = relationship('Clerk', backref = 'department')
 
 class PositionCat(Base):
     __tablename__ = 'positioncat'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(45), nullable = False)
-    position = relationship('Category', backref = 'category')
+    name = Column(String(20), nullable = False)
+    position = relationship('Position', backref = 'category')
 
 class Position(Base):
     __tablename__ = 'position'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(45), nullable = False)
+    name = Column(String(20), nullable = False)
     category_id = Column(Integer, ForeignKey('positioncat.id'))
+    clerks = relationship('Clerk', backref = 'position')
 
 class PositionTitle(Base):
     __tablename__ = 'positiontitle'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(45), nullable = False)
+    name = Column(String(20), nullable = False)
     positiontitle = relationship('PositionTitle', backref = 'positiontitle')
+
+class Salary():
+    __tablename__ = 'salary'
+
+    id = Column(Integer, primary_key = True)
+    name = Column(String(45), nullable = False)
+    drawer_id = Column(Integer, ForeignKey('clerk.id'))
+    booker_id = Column(Integer, ForeignKey('clerk.id'))
+    items = relationship('SalaryItemCost', backref = 'salary')
+    booktime = Column(Date(), nullable = False)
+    confirm = Column(Boolean(), nullable = False, default = False)
+
+class SalaryItem():
+    __tablename__ = 'salaryitem'
+
+    id = Column(Integer, primary_key = True)
+    name = Column(String(20), nullable = False)
+    positions = relationship('SalaryItemCost', backref = 'item')
+
+class SalaryItemCost():
+    __tablename__ = 'salaryitemcost'
+
+    id = Column(Integer, primary_key = True)
+    salary_id = Column(Integer, ForeignKey('salary.id'))
+    item_id = Column(Integer, ForeignKey('salaryitem.id'))
+    cost = Column(Numeric(precision = 2), nullable = False)
 
 class Clerk(Base):
     __tablename__ = 'clerk'
 
     id = Column(Integer, primary_key = True)
     recordid = Column(String(12), nullable = False, unique = True)
-    department_id = Column(Integer, nullable = False, ForeignKey('department.id'))
-    position_id = Column(Integer, nullable = False, ForeignKey('position.id'))
-    positiontitle_id = Column(Integer, nullable = False, ForeignKey('positiontitle.id'))
+    department_id = Column(Integer, ForeignKey('department.id'))
+    position_id = Column(Integer, ForeignKey('position.id'))
+    positiontitle_id = Column(Integer, ForeignKey('positiontitle.id'))
+    salary_draw = relationship('Salary', backref = 'drawer')
+    salary_book = relationship('Salary', backref = 'booker')
     name = Column(String(45), nullable = False)
     gender = Column(String(2), nullable = False)
     email = Column(String(45))
@@ -86,7 +115,6 @@ class Clerk(Base):
     relationship = Column(Text())
     remarks = Column(Text())
     booker = Column(Integer)
-    booktime = Column(Datetime())
+    booktime = Column(DateTime())
     avatar = Column(String(45), unique = True)
-    confirm = Column(Boolean())
-
+    confirm = Column(Boolean(), nullable = False, default = False)
