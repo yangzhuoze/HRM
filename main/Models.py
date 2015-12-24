@@ -10,7 +10,7 @@ class Group(Base):
     __tablename__ = 'group'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(45), nullable = False)
+    name = Column(String(45), nullable = False, unique = True)
     companies = relationship('Company', backref = 'parent')
 
 class Company(Base):
@@ -33,14 +33,14 @@ class PositionCat(Base):
     __tablename__ = 'positioncat'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(20), nullable = False)
+    name = Column(String(20), nullable = False, unique = True)
     position = relationship('Position', backref = 'category')
 
 class Position(Base):
     __tablename__ = 'position'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(20), nullable = False)
+    name = Column(String(20), nullable = False, unique = True)
     category_id = Column(Integer, ForeignKey('positioncat.id'))
     clerks = relationship('Clerk', backref = 'position')
 
@@ -48,34 +48,42 @@ class PositionTitle(Base):
     __tablename__ = 'positiontitle'
 
     id = Column(Integer, primary_key = True)
-    name = Column(String(20), nullable = False)
-    positiontitle = relationship('PositionTitle', backref = 'positiontitle')
+    name = Column(String(20), nullable = False, unique = True)
+    positiontitle = relationship('Clerk', backref = 'positiontitle')
 
-class Salary():
+class Salary(Base):
     __tablename__ = 'salary'
 
     id = Column(Integer, primary_key = True)
     name = Column(String(45), nullable = False)
-    drawer_id = Column(Integer, ForeignKey('clerk.id'))
     booker_id = Column(Integer, ForeignKey('clerk.id'))
-    items = relationship('SalaryItemCost', backref = 'salary')
+    item = relationship('SalaryItemCost', backref = 'salary')
     booktime = Column(Date(), nullable = False)
     confirm = Column(Boolean(), nullable = False, default = False)
 
-class SalaryItem():
+class SalaryItem(Base):
     __tablename__ = 'salaryitem'
 
     id = Column(Integer, primary_key = True)
     name = Column(String(20), nullable = False)
-    positions = relationship('SalaryItemCost', backref = 'item')
+    salary = relationship('SalaryItemCost', backref = 'item')
 
-class SalaryItemCost():
+class SalaryItemCost(Base):
     __tablename__ = 'salaryitemcost'
 
     id = Column(Integer, primary_key = True)
     salary_id = Column(Integer, ForeignKey('salary.id'))
     item_id = Column(Integer, ForeignKey('salaryitem.id'))
     cost = Column(Numeric(precision = 2), nullable = False)
+    clerks = relationship('Clerk', backref = 'salary')
+
+class Role(Base):
+    __tablename__ = 'role'
+
+    id = Column(Integer, primary_key = True)
+    name = Column(String(20), nullable = False, unique = True)
+    permission = Column(Integer, nullable = False)
+    clerks = relationship('Clerk', backref = 'role')
 
 class Clerk(Base):
     __tablename__ = 'clerk'
@@ -85,7 +93,7 @@ class Clerk(Base):
     department_id = Column(Integer, ForeignKey('department.id'))
     position_id = Column(Integer, ForeignKey('position.id'))
     positiontitle_id = Column(Integer, ForeignKey('positiontitle.id'))
-    salary_draw = relationship('Salary', backref = 'drawer')
+    role_id = Column(Integer, ForeignKey('role.id'))
     salary_book = relationship('Salary', backref = 'booker')
     name = Column(String(45), nullable = False)
     gender = Column(String(2), nullable = False)
@@ -106,7 +114,7 @@ class Clerk(Base):
     education = Column(String(10), nullable = False)
     educationtime = Column(Integer)
     major = Column(String(20))
-    salary = Column(Integer, nullable = False)
+    salary_id = Column(Integer, ForeignKey('salaryitemcost.id'))
     openingbank = Column(String(45))
     account = Column(String(20))
     speciality = Column(String(45))
