@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from sqlalchemy import create_engine, Column, Integer, String, Date, Text, DateTime, Boolean, ForeignKey, Numeric
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy import Column, Integer, String, Date, Text, DateTime, Boolean, ForeignKey, Numeric
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -90,6 +90,7 @@ class Clerk(Base):
 
     id = Column(Integer, primary_key = True)
     recordid = Column(String(12), nullable = False, unique = True)
+    password = Column(String(20),  nullable = False)
     department_id = Column(Integer, ForeignKey('department.id'))
     position_id = Column(Integer, ForeignKey('position.id'))
     positiontitle_id = Column(Integer, ForeignKey('positiontitle.id'))

@@ -3,19 +3,36 @@
 import sys
 
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QDialog
+from PyQt5.QtWidgets import QDialog,  QLineEdit
 
-from . import app
+from . import app,  session
+from .main import main_event
+from .Models import Clerk
 from .Ui.Ui_login import Ui_Dialog
 
+import main.currentUser as currentUser
+
 class login_event(QDialog, Ui_Dialog):
+    
+    main = main_event()
+    
     def __init__(self, parent=None):
         super(login_event, self).__init__(parent)
         self.setupUi(self)
+        self.input_password.setEchoMode(QLineEdit.Password)
     
     @pyqtSlot()
     def on_button_login_clicked(self):
-        print(self.input_username.text())
+        username = self.input_username.text()
+        password = self.input_password.text()
+        user = session.query(Clerk).filter_by(recordid = username, 
+            password = password).first()
+        if (user != None):
+            currentUser = user
+            self.main.show()
+            self.close()
+        else:
+            self.label_msg.setText('用户名密码不正确')
     
     @pyqtSlot()
     def on_button_quit_clicked(self):
