@@ -10,11 +10,11 @@ from .main import main_event
 from .Models import Clerk
 from .Ui.Ui_login import Ui_Dialog
 
-import main.currentUser as currentUser
+import currentUser
 
 class login_event(QDialog, Ui_Dialog):
     
-    main = main_event()
+    main = None
     
     def __init__(self, parent=None):
         super(login_event, self).__init__(parent)
@@ -23,12 +23,15 @@ class login_event(QDialog, Ui_Dialog):
     
     @pyqtSlot()
     def on_button_login_clicked(self):
+        global currentUser
+        print(currentUser.currentUser)
         username = self.input_username.text()
         password = self.input_password.text()
         user = session.query(Clerk).filter_by(recordid = username, 
             password = password).first()
         if (user != None):
-            currentUser = user
+            currentUser.setCurrentUser(user)
+            self.main = main_event()
             self.main.show()
             self.close()
         else:

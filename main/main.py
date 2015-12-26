@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QMainWindow
 from .Ui.Ui_main import Ui_MainWindow
 from .create import create_event
 
-import main.currentUser as currentUser
+import currentUser
 
 class main_event(QMainWindow, Ui_MainWindow):
     
@@ -15,6 +15,8 @@ class main_event(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(main_event, self).__init__(parent)
         self.setupUi(self)
+        print(currentUser.getCurrentUser())
+        self.label_currentUser_data.setText(currentUser.getCurrentUser().name)
     
     @pyqtSlot()
     def on_button_query_clicked(self):

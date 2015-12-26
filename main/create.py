@@ -13,7 +13,7 @@ class create_event(QDialog, Ui_Dialog):
     
     _translate = QCoreApplication.translate
     group = session.query(Group).order_by(Group.id).all()
-    companies = None
+    companies = session.query(Company).all()
     
     def __init__(self, parent=None):
         super(create_event, self).__init__(parent)

@@ -1,3 +1,5 @@
+from main.Models import Clerk
+
 currentUser = None
 
 def getCurrentUser():

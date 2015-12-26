@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from Models import Base, Group, Company, Department
+from Models import Base, Group, Company, Department, Clerk, Role
 
 engine = create_engine('mysql+mysqlconnector://root:joze@localhost:3306/hrm')
 DBSession = sessionmaker(bind = engine)
@@ -30,21 +30,33 @@ session = DBSession()
 #session.add(company6)
 #session.commit()
 
-company = session.query(Company).filter_by(id = 1).first()
-department1 = Department(id = 1, name = 'testDepartment', parent = company)
-department2 = Department(id = 2, name = 'testDepartment22', parent = company)
-session.add(department1)
-session.add(department2)
-company4 = session.query(Company).filter_by(id = 4).first()
-department3 = Department(id = 3, name = 'testDepartment3', parent = company4)
-department4 = Department(id = 4, name = 'testDepartment4', parent = company4)
-session.add(department3)
-session.add(department4)
-company5 = session.query(Company).filter_by(id = 5).first()
-department5 = Department(id = 5, name = 'testDepartment5', parent = company5)
-department6 = Department(id = 6, name = 'testDepartment6', parent = company5)
-session.add(department5)
-session.add(department6)
+#company = session.query(Company).filter_by(id = 1).first()
+#department1 = Department(id = 1, name = 'testDepartment', parent = company)
+#department2 = Department(id = 2, name = 'testDepartment22', parent = company)
+#session.add(department1)
+#session.add(department2)
+#company4 = session.query(Company).filter_by(id = 4).first()
+#department3 = Department(id = 3, name = 'testDepartment3', parent = company4)
+#department4 = Department(id = 4, name = 'testDepartment4', parent = company4)
+#session.add(department3)
+#session.add(department4)
+#company5 = session.query(Company).filter_by(id = 5).first()
+#department5 = Department(id = 5, name = 'testDepartment5', parent = company5)
+#department6 = Department(id = 6, name = 'testDepartment6', parent = company5)
+#session.add(department5)
+#session.add(department6)
+#session.commit()
+
+#role = Role(id = 1, name = 'Administrator', permission = 0xFFFF)
+role = session.query(Role).filter_by(id = 1).first()
+department = session.query(Department).filter_by(id = 1).first()
+clerk = Clerk(id = 2, recordid = '201501010102', password = '123123',
+    department = department, role = role, name = 'yyyy', 
+    gender = '男', nation = '中国', ethnicity = '汉族', faith = '无', 
+    politicalstatur = '团员', identification = '110',  education = '12', 
+    confirm = 0)
+#session.add(role)
+session.add(clerk)
 session.commit()
 
 session.close()

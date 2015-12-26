@@ -1,1 +1,1 @@
-currentUser = None
+currentUser = '1111'
