@@ -6,18 +6,23 @@ from PyQt5.QtWidgets import QMainWindow
 from .Ui.Ui_main import Ui_MainWindow
 from .create import create_event
 
-import currentUser
+from config import Permission
+import currentApp
 
 class main_event(QMainWindow, Ui_MainWindow):
     
-    create = create_event()
+    create = None
     
     def __init__(self, parent=None):
         super(main_event, self).__init__(parent)
         self.setupUi(self)
-        print(currentUser.getCurrentUser())
-        self.label_currentUser_data.setText(currentUser.getCurrentUser().name)
+        self.label_currentUser_data.setText(currentApp.getCurrentUser().name)
     
     @pyqtSlot()
     def on_button_query_clicked(self):
-        self.create.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.HUMAN_REGISTER == Permission.HUMAN_REGISTER):
+            self.create = create_event()
+            self.create.show()
+        else:
+            print('Permission Denied..')

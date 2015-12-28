@@ -8,4 +8,3 @@ app = QtWidgets.QApplication(sys.argv)
 engine = create_engine('mysql+mysqlconnector://root:joze@localhost:3306/hrm')
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
-currentUser = '222222'
