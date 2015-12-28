@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Z:\Python\HRM\main\Ui\message.ui'
+# Form implementation generated from reading ui file 'Z:\Python\HRM\main/Ui/message.ui'
 #
 # Created by: PyQt5 UI code generator 5.5.1
 #
