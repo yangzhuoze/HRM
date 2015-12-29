@@ -6,18 +6,20 @@ from PyQt5.QtWidgets import QDialog, QPushButton, QAbstractItemView, \
 
 from .Ui.Ui_clerklist import Ui_Dialog
 from .Models import session, Clerk
-from .clerk_confirm import clerk_confirm_event
+from .clerk_query import clerk_query_event
 
-class clerk_confirm_list_event(QDialog, Ui_Dialog):
+
+class clerk_query_list_event(QDialog, Ui_Dialog):
+    
+    clerk_query = None
     
     def __init__(self, parent=None):
-        super(clerk_confirm_list_event, self).__init__(parent)
+        super(clerk_query_list_event, self).__init__(parent)
         self.setupUi(self)
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        clerks = session.query(Clerk).filter_by(confirm = 0).\
-            order_by(Clerk.id).all()
-        self.label_status.setText('你正在做的业务是：人力资源->人力资源档案管理->人力资源档案登记复核')
-        self.label_total.setText('当前等待复核的人力资源档案总数：%s例' % len(clerks))
+        clerks = session.query(Clerk).all()
+        self.label_status.setText('你正在做的业务是：人力资源->人力资源档案管理->人力资源档案登记查询')
+        self.label_total.setText('人力资源档案总数：%s例' % len(clerks))
         for i, clerk in enumerate(clerks):
             self.table.insertRow(i)
             self.table.setItem(i, 0, QTableWidgetItem(clerk.recordid))
@@ -28,10 +30,10 @@ class clerk_confirm_list_event(QDialog, Ui_Dialog):
             self.table.setItem(i, 5, QTableWidgetItem(clerk.department.name))
             self.table.setItem(i, 6, QTableWidgetItem(clerk.position.name))
             button = QPushButton(self.table)
-            button.setText('复核')
-            button.clicked.connect(lambda: self.open_clerk_confirm(clerk))
+            button.setText('查看明细')
+            button.clicked.connect(lambda: self.open_clerk_query(clerk))
             self.table.setCellWidget(i, 7, button)
-
-    def open_clerk_confirm(self, clerk):
-        self.clerk_confirm = clerk_confirm_event(clerk)
-        self.clerk_confirm.show()
+            
+    def open_clerk_query(self, clerk):
+        self.clerk_query = clerk_query_event(clerk)
+        self.clerk_query.show()

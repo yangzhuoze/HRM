@@ -7,15 +7,16 @@ from .Ui.Ui_main import Ui_MainWindow
 from .create import create_event
 from .message import message_event
 from .clerk_confirm_list import clerk_confirm_list_event
-from .clerk_confirm import clerk_confirm_event
+from .clerk_query_list import clerk_query_list_event
 
 from config import Permission
 import currentApp
 
 class main_event(QMainWindow, Ui_MainWindow):
     
-    create = None
     message = None
+    clerk_query = None
+    clerk_create = None
     clerk_confirm = None
     
     def __init__(self, parent=None):
@@ -25,15 +26,15 @@ class main_event(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_button_human_query_clicked(self):
-        self.clerk_confirm = clerk_confirm_event()
-        self.clerk_confirm.show()
+        self.clerk_query = clerk_query_list_event()
+        self.clerk_query.show()
 
     @pyqtSlot()
     def on_button_human_create_clicked(self):
         if (currentApp.getCurrentUser().role.permission &
                 Permission.HUMAN_REGISTER == Permission.HUMAN_REGISTER):
-            self.create = create_event()
-            self.create.show()
+            self.clerk_ = create_event()
+            self.clerk_.show()
         else:
             self.message = message_event(msg = 'Permission Denied')
             self.message.show()

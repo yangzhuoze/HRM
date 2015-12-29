@@ -1034,7 +1034,7 @@ class Ui_Dialog(object):
         self.label_relationship.setText(_translate("Dialog", "家庭关系信息"))
         self.label_booker_data.setText(_translate("Dialog", "TextLabel"))
         self.button_submit.setText(_translate("Dialog", "提交"))
-        self.button_clear.setText(_translate("Dialog", "清除"))
+        self.button_clear.setText(_translate("Dialog", "关闭"))
 
 
 if __name__ == "__main__":

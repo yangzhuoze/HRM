@@ -17,6 +17,7 @@ class clerk_confirm_event(QDialog, Ui_Dialog):
         self.clerk = clerk
         super(clerk_confirm_event, self).__init__(parent)
         self.setupUi(self)
+        self.label_status.setText('你正在做的业务是：人力资源->人力资源档案管理->人力资源档案登记复核')
         self.input_group.addItem(clerk.group.name)
         self.input_company.addItem(clerk.company.name)
         self.input_department.addItem(clerk.department.name)
@@ -87,4 +88,4 @@ class clerk_confirm_event(QDialog, Ui_Dialog):
     
     @pyqtSlot()
     def on_button_clear_clicked(self):
-        pass
+        self.close()
