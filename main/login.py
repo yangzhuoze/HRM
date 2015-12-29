@@ -20,6 +20,8 @@ class login_event(QDialog, Ui_Dialog):
         super(login_event, self).__init__(parent)
         self.setupUi(self)
         self.input_password.setEchoMode(QLineEdit.Password)
+        self.input_username.setText('201501010101')
+        self.input_password.setText('000000')
     
     @pyqtSlot()
     def on_button_login_clicked(self):

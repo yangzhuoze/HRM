@@ -8,16 +8,16 @@ from .message import message_event
 from .Ui.Ui_clerkdetail import Ui_Dialog
 
 
-class clerk_confirm_event(QDialog, Ui_Dialog):
+class clerk_update_event(QDialog, Ui_Dialog):
     
     clerk = None
     msg = None
     
     def __init__(self, clerk, parent=None):
         self.clerk = clerk
-        super(clerk_confirm_event, self).__init__(parent)
+        super(clerk_update_event, self).__init__(parent)
         self.setupUi(self)
-        self.label_status.setText('你正在做的业务是：人力资源->人力资源档案管理->人力资源档案复核')
+        self.label_status.setText('你正在做的业务是：人力资源->人力资源档案管理->人力资源档案变更')
         self.input_group.addItem(clerk.group.name)
         self.input_company.addItem(clerk.company.name)
         self.input_department.addItem(clerk.department.name)
@@ -50,7 +50,7 @@ class clerk_confirm_event(QDialog, Ui_Dialog):
         self.input_vitae.setText(clerk.vitae)
         self.input_relationship.setText(clerk.relationship)
         self.input_remarks.setText(clerk.remarks)
-    
+        
     @pyqtSlot()
     def on_button_submit_clicked(self):
         self.clerk.name = self.input_name.text()
@@ -79,13 +79,12 @@ class clerk_confirm_event(QDialog, Ui_Dialog):
         self.clerk.vitae = self.input_vitae.toPlainText()
         self.clerk.relationship = self.input_relationship.toPlainText()
         self.clerk.remarks = self.input_remarks.toPlainText()
-        self.clerk.confirm = 1
         session.add(self.clerk)
         session.commit()
         self.msg = message_event(msg = 'Update Successfully')
         self.msg.show()
         self.close()
-    
+        
     @pyqtSlot()
     def on_button_clear_clicked(self):
         self.close()

@@ -47,8 +47,12 @@ class Ui_Dialog(object):
         self.table.setHorizontalHeaderItem(6, item)
         item = QtWidgets.QTableWidgetItem()
         self.table.setHorizontalHeaderItem(7, item)
-        self.gridLayout.addWidget(self.table, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.table, 2, 1, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
+        self.button_filter = QtWidgets.QPushButton(Dialog)
+        self.button_filter.setMaximumSize(QtCore.QSize(141, 16777215))
+        self.button_filter.setObjectName("button_filter")
+        self.gridLayout_2.addWidget(self.button_filter, 1, 0, 1, 1)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -74,6 +78,7 @@ class Ui_Dialog(object):
         item.setText(_translate("Dialog", "职位名称"))
         item = self.table.horizontalHeaderItem(7)
         item.setText(_translate("Dialog", "复核"))
+        self.button_filter.setText(_translate("Dialog", "按条件"))
 
 
 if __name__ == "__main__":

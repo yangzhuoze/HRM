@@ -7,19 +7,17 @@ from PyQt5.QtWidgets import QDialog, QPushButton, QAbstractItemView, \
 
 from .Ui.Ui_clerklist import Ui_Dialog
 from .Models import session, Clerk
-from .clerk_confirm import clerk_confirm_event
+from .clerk_update import clerk_update_event
 
-class clerk_confirm_list_event(QDialog, Ui_Dialog):
-    
+
+class clerk_update_list_event(QDialog, Ui_Dialog):
     def __init__(self, parent=None):
-        super(clerk_confirm_list_event, self).__init__(parent)
+        super(clerk_update_list_event, self).__init__(parent)
         self.setupUi(self)
-        self.button_filter.close()
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        clerks = session.query(Clerk).filter_by(confirm = 0).\
-            order_by(Clerk.id).all()
-        self.label_status.setText('你正在做的业务是：人力资源->人力资源档案管理->人力资源档案登记复核')
-        self.label_total.setText('当前等待复核的人力资源档案总数：%s例' % len(clerks))
+        clerks = session.query(Clerk).all()
+        self.label_status.setText('你正在做的业务是：人力资源->人力资源档案管理->人力资源档案登记变更')
+        self.label_total.setText('人力资源档案总数：%s例' % len(clerks))
         for i, clerk in enumerate(clerks):
             self.table.insertRow(i)
             self.table.setItem(i, 0, QTableWidgetItem(clerk.recordid))
@@ -30,10 +28,17 @@ class clerk_confirm_list_event(QDialog, Ui_Dialog):
             self.table.setItem(i, 5, QTableWidgetItem(clerk.department.name))
             self.table.setItem(i, 6, QTableWidgetItem(clerk.position.name))
             button = QPushButton(self.table)
-            button.setText('复核')
-            button.clicked.connect(partial(self.open_clerk_confirm, clerk))
+            button.setText('变更')
+            button.clicked.connect(partial(self.open_clerk_update, clerk))
             self.table.setCellWidget(i, 7, button)
-
-    def open_clerk_confirm(self, clerk):
-        self.clerk_confirm = clerk_confirm_event(clerk)
-        self.clerk_confirm.show()
+        
+    @pyqtSlot()
+    def on_button_filter_clicked(self):
+        from .clerk_query_filter import clerk_query_filter_event
+        self.clerk_query_filter = clerk_query_filter_event()
+        self.clerk_query_filter.show()
+        self.close()
+        
+    def open_clerk_update(self, clerk):
+        self.clerk_query = clerk_update_event(clerk)
+        self.clerk_query.show()
