@@ -9,6 +9,7 @@ from .clerk_query_list import clerk_query_list_event
 from .clerk_create import clerk_create_event
 from .clerk_update_list import clerk_update_list_event
 from .clerk_confirm_list import clerk_confirm_list_event
+from .salary_query_list import salary_query_list_event
 
 from config import Permission
 import currentApp
@@ -20,6 +21,7 @@ class main_event(QMainWindow, Ui_MainWindow):
     clerk_create = None
     clerk_update = None
     clerk_confirm = None
+    salary_query = None
     
     def __init__(self, parent=None):
         super(main_event, self).__init__(parent)
@@ -60,3 +62,8 @@ class main_event(QMainWindow, Ui_MainWindow):
         else:
             self.message = message_event(msg = 'Permission Denied')
             self.message.show()
+            
+    @pyqtSlot()
+    def on_button_salary_query_clicked(self):
+        self.salary_query = salary_query_list_event()
+        self.salary_query.show()

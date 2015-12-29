@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 
 from main import session
 from main.Models import Base, Group, Company, Department, Clerk, Role,\
-    PositionCat, Position, PositionTitle
+    PositionCat, Position, PositionTitle, Salary, SalaryItem, SalaryItemCost
     
 engine = create_engine('mysql+mysqlconnector://root:joze@localhost:3306/hrm')
 
@@ -94,11 +94,32 @@ def create_clerk():
     session.add(clerk)
     session.commit()
     
+def create_salary():
+    clerk = session.query(Clerk).filter_by(id = 1).first()
+    salary = Salary(name = 'testSalary', booker = clerk,
+        booktime = datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        confirm = 0)
+    session.add(salary)
+    session.commit()
+
+    
+def create_item():
+    salary = session.query(Salary).filter_by(id = 1).first()
+    salaryitem = SalaryItem(name = '基本工资')
+    session.add(salaryitem)
+    session.commit()
+    salaryitemcost = SalaryItemCost(salary = salary,
+        item = salaryitem, cost = 5000)
+    session.add(salaryitemcost)
+    session.commit()
+    
 def insert_all():
     create_group()
     create_company()
     create_position()
     create_clerk()
+    create_salary()
+    create_item()
     print('insert finish')
 
 if __name__ == '__main__':

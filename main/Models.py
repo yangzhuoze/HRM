@@ -79,7 +79,7 @@ class SalaryItemCost(Base):
     id = Column(Integer, primary_key = True)
     salary_id = Column(Integer, ForeignKey('salary.id'))
     item_id = Column(Integer, ForeignKey('salaryitem.id'))
-    cost = Column(Numeric(precision = 2), nullable = False)
+    cost = Column(Numeric(scale = 2), nullable = False)
     clerks = relationship('Clerk', backref = 'salary', lazy = 'dynamic')
 
 class Role(Base):
