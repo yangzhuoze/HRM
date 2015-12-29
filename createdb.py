@@ -1,3 +1,4 @@
+from datetime import datetime
 from sqlalchemy import create_engine
 
 from main import session
@@ -59,23 +60,6 @@ def create_company():
     session.add(department6)
     session.commit()
 
-#创建权限和雇员
-def create_clerk():
-    role = Role(name = 'Administrator', permission = 0xFFFFFF)
-    session.add(role)
-    session.commit()
-    role = session.query(Role).filter_by(id = 1).first()
-    group = session.query(Group).filter_by(id = 1).first()
-    company = session.query(Company).filter_by(id = 1).first()
-    department = session.query(Department).filter_by(id = 1).first()
-    clerk = Clerk(recordid = '201501010101', password = '123123',
-        group = group, company = company, department = department, 
-        role = role, name = 'yyyy', gender = '男', nation = '中国', 
-        ethnicity = '汉族', faith = '无', politicalstatus = '团员', 
-        identification = '110',  education = '12', confirm = 0)
-    session.add(clerk)
-    session.commit()
-
 #职位
 def create_position():
     positioncat = PositionCat(name = '销售2')
@@ -88,7 +72,28 @@ def create_position():
     positiontitle = PositionTitle(name = '老牌嘴炮王2')
     session.add(positiontitle)
     session.commit()
-
+    
+#创建权限和雇员
+def create_clerk():
+    role = Role(name = 'Administrator', permission = 0xFFFFFF)
+    session.add(role)
+    session.commit()
+    role = session.query(Role).filter_by(id = 1).first()
+    group = session.query(Group).filter_by(id = 1).first()
+    company = session.query(Company).filter_by(id = 1).first()
+    department = session.query(Department).filter_by(id = 1).first()
+    position = session.query(Position).filter_by(id = 1).first()
+    positiontitle = session.query(PositionTitle).filter_by(id = 1).first()
+    clerk = Clerk(recordid = '201501010101', password = '123123',
+        group = group, company = company, department = department,
+        position = position, positiontitle = positiontitle,
+        birthday = datetime.now().strftime('%Y-%m-%d'),
+        role = role, name = 'yyyy', gender = '男', nation = '中国', 
+        ethnicity = '汉族', faith = '无', politicalstatus = '团员', 
+        identification = '110',  education = '12', confirm = 0)
+    session.add(clerk)
+    session.commit()
+    
 def insert_all():
     create_group()
     create_company()

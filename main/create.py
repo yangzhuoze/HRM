@@ -5,14 +5,16 @@ from datetime import datetime
 from PyQt5.QtCore import pyqtSlot,  QCoreApplication,  QDate
 from PyQt5.QtWidgets import QDialog
 
-from .Models import Group, Clerk, PositionCat, PositionTitle
 from . import session
+from .Models import Group, Clerk, PositionCat, PositionTitle
+from .message import message_event
 from .Ui.Ui_clerkdetail import Ui_Dialog
 
 import currentApp
 
 class create_event(QDialog, Ui_Dialog):
     
+    msg = None
     _translate = QCoreApplication.translate
     groups = session.query(Group).order_by(Group.id).all()
     companies = None
@@ -138,7 +140,9 @@ class create_event(QDialog, Ui_Dialog):
             self.selected_department.id, clerk.id)
         session.add(clerk)
         session.commit()
-        print('insert secceed')
+        self.msg = message_event(msg = 'Insert Successfully')
+        self.msg.show()
+        self.close()
     
     @pyqtSlot()
     def on_button_clear_clicked(self):

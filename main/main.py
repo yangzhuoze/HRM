@@ -42,7 +42,7 @@ class main_event(QMainWindow, Ui_MainWindow):
     def on_button_human_confirm_clicked(self):
         if (currentApp.getCurrentUser().role.permission &
                 Permission.HUMAN_COMFIRM == Permission.HUMAN_COMFIRM):
-            self.clerk_confirm = clerk_confirm_event(currentApp.getCurrentUser())
+            self.clerk_confirm = clerk_confirm_list_event()
             self.clerk_confirm.show()
         else:
             self.message = message_event(msg = 'Permission Denied')

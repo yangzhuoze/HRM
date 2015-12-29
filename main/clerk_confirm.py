@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QDialog, QLabel
+from PyQt5.QtWidgets import QDialog
 
 from .Models import session
 from .message import message_event
@@ -78,6 +78,7 @@ class clerk_confirm_event(QDialog, Ui_Dialog):
         self.clerk.vitae = self.input_vitae.toPlainText()
         self.clerk.relationship = self.input_relationship.toPlainText()
         self.clerk.remarks = self.input_remarks.toPlainText()
+        self.clerk.confirm = 1
         session.add(self.clerk)
         session.commit()
         self.msg = message_event(msg = 'Update Successfully')

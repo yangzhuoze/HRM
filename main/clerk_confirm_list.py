@@ -6,10 +6,11 @@ from PyQt5.QtWidgets import QDialog, QPushButton, QAbstractItemView, \
 
 from .Ui.Ui_clerklist import Ui_Dialog
 from .Models import session, Clerk
+from .clerk_confirm import clerk_confirm_event
 
 class clerk_confirm_list_event(QDialog, Ui_Dialog):
     
-    clerks = session.query(Clerk).filter_by(id = 4).\
+    clerks = session.query(Clerk).filter_by(confirm = 0).\
         order_by(Clerk.id).all()
     
     def __init__(self, parent=None):
@@ -27,4 +28,9 @@ class clerk_confirm_list_event(QDialog, Ui_Dialog):
             self.table.setItem(i, 6, QTableWidgetItem(clerk.position.name))
             button = QPushButton(self.table)
             button.setText('复核')
+            button.clicked.connect(lambda: self.open_clerk_confirm(clerk))
             self.table.setCellWidget(i, 7, button)
+
+    def open_clerk_confirm(self, clerk):
+        self.clerk_confirm = clerk_confirm_event(clerk)
+        self.clerk_confirm.show()
