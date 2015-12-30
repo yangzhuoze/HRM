@@ -11,6 +11,7 @@ from .clerk_update_list import clerk_update_list_event
 from .clerk_confirm_list import clerk_confirm_list_event
 from .salary_query_list import salary_query_list_event
 from .salary_create import salary_create_event
+from .salary_update_list import salary_update_list_event
 
 from config import Permission
 import currentApp
@@ -24,6 +25,7 @@ class main_event(QMainWindow, Ui_MainWindow):
     clerk_confirm = None
     salary_query = None
     salary_create = None
+    salary_update = None
     
     def __init__(self, parent=None):
         super(main_event, self).__init__(parent)
@@ -74,3 +76,8 @@ class main_event(QMainWindow, Ui_MainWindow):
     def on_button_salary_create_clicked(self):
         self.salary_create = salary_create_event()
         self.salary_create.show()
+        
+    @pyqtSlot()
+    def on_button_salary_update_clicked(self):
+        self.salary_update = salary_update_list_event()
+        self.salary_update.show()
