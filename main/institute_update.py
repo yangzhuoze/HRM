@@ -3,7 +3,7 @@
 from PyQt5.QtCore import pyqtSlot, QCoreApplication
 from PyQt5.QtWidgets import QDialog
 
-from .Models import session, Group, Company, Department
+from .Models import session, Group
 from .message import message_event
 from .Ui.Ui_institute_create import Ui_Dialog
 

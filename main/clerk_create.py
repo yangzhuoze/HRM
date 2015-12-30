@@ -22,20 +22,23 @@ class clerk_create_event(QDialog, Ui_Dialog):
     selected_company = None
     selected_department = None
     
-    positioncats = session.query(PositionCat).order_by(PositionCat.id).all()
+    positioncats = None
     selected_positioncat = None
     selected_position = None
     
-    positiontitles = session.query(PositionTitle).order_by(PositionTitle.id).all()
+    positiontitles = None
     selected_positiontitle = None
     
-    salaries = session.query(Salary).order_by(Salary.id).all()
+    salaries = None
     selected_salary = None
     
     def __init__(self, parent=None):
         super(clerk_create_event, self).__init__(parent)
         self.setupUi(self)
         self.groups = session.query(Group).order_by(Group.id).all()
+        self.positioncats = session.query(PositionCat).order_by(PositionCat.id).all()
+        self.positiontitles = session.query(PositionTitle).order_by(PositionTitle.id).all()
+        self.salaries = session.query(Salary).order_by(Salary.id).all()
         self.label_booktime_data.setText((str)(datetime.now())[:19])
         self.label_booker_data.setText(currentApp.getCurrentUser().name)
         for group in self.groups:
