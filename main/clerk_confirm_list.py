@@ -37,3 +37,4 @@ class clerk_confirm_list_event(QDialog, Ui_Dialog):
     def open_clerk_confirm(self, clerk):
         self.clerk_confirm = clerk_confirm_event(clerk)
         self.clerk_confirm.show()
+        self.close()

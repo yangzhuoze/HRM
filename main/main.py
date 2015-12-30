@@ -11,6 +11,8 @@ from .clerk_update_list import clerk_update_list_event
 from .clerk_confirm_list import clerk_confirm_list_event
 from .position_query import position_query_event
 from .position_list import position_list_event
+from .role import role_event
+from .role_link_list import role_link_list_event
 from .institute_query import institute_query_event
 from .institute_create_list import institute_create_list_event
 from .institute_update_list import institute_update_list_event
@@ -30,6 +32,8 @@ class main_event(QMainWindow, Ui_MainWindow):
     clerk_confirm = None
     position_query = None
     position_list = None
+    role = None
+    role_link_list = None
     institute_query = None
     institute_create = None
     institute_update = None
@@ -50,7 +54,7 @@ class main_event(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_button_human_create_clicked(self):
         if (currentApp.getCurrentUser().role.permission &
-                Permission.HUMAN_REGISTER == Permission.HUMAN_REGISTER):
+                Permission.HUMAN_CREATE == Permission.HUMAN_CREATE):
             self.clerk_ = clerk_create_event()
             self.clerk_.show()
         else:
@@ -86,6 +90,16 @@ class main_event(QMainWindow, Ui_MainWindow):
     def on_button_position_list_clicked(self):
         self.position_list = position_list_event()
         self.position_list.show()
+            
+    @pyqtSlot()
+    def on_button_role_clicked(self):
+        self.role = role_event()
+        self.role.show()
+            
+    @pyqtSlot()
+    def on_button_role_link_list_clicked(self):
+        self.role_link_list = role_link_list_event()
+        self.role_link_list.show()
             
     @pyqtSlot()
     def on_button_institute_query_clicked(self):
