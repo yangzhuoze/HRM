@@ -11,6 +11,7 @@ from .clerk_update_list import clerk_update_list_event
 from .clerk_confirm_list import clerk_confirm_list_event
 from .institute_query import institute_query_event
 from .institute_create_list import institute_create_list_event
+from .institute_update_list import institute_update_list_event
 from .salary_query_list import salary_query_list_event
 from .salary_create import salary_create_event
 from .salary_update_list import salary_update_list_event
@@ -27,6 +28,7 @@ class main_event(QMainWindow, Ui_MainWindow):
     clerk_confirm = None
     institute_query = None
     institute_create = None
+    institute_update = None
     salary_query = None
     salary_create = None
     salary_update = None
@@ -80,6 +82,11 @@ class main_event(QMainWindow, Ui_MainWindow):
     def on_button_institute_create_clicked(self):
         self.institute_create = institute_create_list_event()
         self.institute_create.show()
+        
+    @pyqtSlot()
+    def on_button_institute_update_clicked(self):
+        self.institute_update = institute_update_list_event()
+        self.institute_update.show()
 
     @pyqtSlot()
     def on_button_salary_query_clicked(self):
