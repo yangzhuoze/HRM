@@ -47,7 +47,19 @@ class Ui_Dialog(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.table_position)
         self.button = QtWidgets.QPushButton(Dialog)
         self.button.setObjectName("button")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.button)
+        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.button)
+        self.label_positiontitle = QtWidgets.QLabel(Dialog)
+        self.label_positiontitle.setObjectName("label_positiontitle")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_positiontitle)
+        self.table_positiontitle = QtWidgets.QTableWidget(Dialog)
+        self.table_positiontitle.setObjectName("table_positiontitle")
+        self.table_positiontitle.setColumnCount(2)
+        self.table_positiontitle.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_positiontitle.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.table_positiontitle.setHorizontalHeaderItem(1, item)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.table_positiontitle)
         self.verticalLayout_2.addLayout(self.formLayout)
 
         self.retranslateUi(Dialog)
@@ -67,6 +79,11 @@ class Ui_Dialog(object):
         item = self.table_position.horizontalHeaderItem(1)
         item.setText(_translate("Dialog", "职位名称"))
         self.button.setText(_translate("Dialog", "关闭"))
+        self.label_positiontitle.setText(_translate("Dialog", "职称："))
+        item = self.table_positiontitle.horizontalHeaderItem(0)
+        item.setText(_translate("Dialog", "职称编号"))
+        item = self.table_positiontitle.horizontalHeaderItem(1)
+        item.setText(_translate("Dialog", "职称名称"))
 
 
 if __name__ == "__main__":
