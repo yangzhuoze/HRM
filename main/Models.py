@@ -61,7 +61,8 @@ class Salary(Base):
 
     id = Column(Integer, primary_key = True)
     name = Column(String(45), nullable = False)
-    booker_id = Column(Integer, ForeignKey('clerk.id'))
+    clerks = relationship('Clerk', backref = 'salary', lazy = 'dynamic')
+    booker = Column(String(20))
     item = relationship('SalaryItemCost', backref = 'salary', lazy = 'dynamic')
     booktime = Column(Date(), nullable = False)
     confirm = Column(Boolean(), nullable = False, default = False)
@@ -84,7 +85,6 @@ class SalaryItemCost(Base):
     salary_id = Column(Integer, ForeignKey('salary.id'))
     item_id = Column(Integer, ForeignKey('salaryitem.id'))
     cost = Column(Numeric(scale = 2), nullable = False)
-    clerks = relationship('Clerk', backref = 'salary', lazy = 'dynamic')
 
 class Role(Base):
     __tablename__ = 'role'
@@ -106,7 +106,7 @@ class Clerk(Base):
     position_id = Column(Integer, ForeignKey('position.id'))
     positiontitle_id = Column(Integer, ForeignKey('positiontitle.id'))
     role_id = Column(Integer, ForeignKey('role.id'))
-    salary_book = relationship('Salary', backref = 'booker', lazy = 'dynamic')
+    salary_id = Column(Integer, ForeignKey('salary.id'))
     name = Column(String(45), nullable = False)
     gender = Column(String(2), nullable = False)
     email = Column(String(45))
@@ -126,7 +126,6 @@ class Clerk(Base):
     education = Column(String(10), nullable = False)
     educationtime = Column(String(4))
     major = Column(String(20))
-    salary_id = Column(Integer, ForeignKey('salaryitemcost.id'))
     openingbank = Column(String(45))
     account = Column(String(20))
     speciality = Column(String(45))

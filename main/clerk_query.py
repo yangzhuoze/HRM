@@ -22,6 +22,7 @@ class clerk_query_event(QDialog, Ui_Dialog):
         self.input_positioncat.addItem(clerk.position.category.name)
         self.input_position.addItem(clerk.position.name)
         self.input_positiontitle.addItem(clerk.positiontitle.name)
+        self.input_salary.addItem(clerk.salary.name)
         self.input_name.setText(clerk.name)
         self.input_gender.setCurrentText(clerk.gender)
         self.input_email.setText(clerk.email)

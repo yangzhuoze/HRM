@@ -6,7 +6,7 @@ from PyQt5.QtCore import pyqtSlot, QCoreApplication, QDate
 from PyQt5.QtWidgets import QDialog
 
 from . import session
-from .Models import Group, Clerk, PositionCat, PositionTitle
+from .Models import Group, Clerk, PositionCat, PositionTitle, Salary
 from .message import message_event
 from .Ui.Ui_clerkdetail import Ui_Dialog
 
@@ -29,6 +29,9 @@ class clerk_create_event(QDialog, Ui_Dialog):
     positiontitles = session.query(PositionTitle).order_by(PositionTitle.id).all()
     selected_positiontitle = None
     
+    salaries = session.query(Salary).order_by(Salary.id).all()
+    selected_salary = None
+    
     def __init__(self, parent=None):
         super(clerk_create_event, self).__init__(parent)
         self.setupUi(self)
@@ -46,6 +49,10 @@ class clerk_create_event(QDialog, Ui_Dialog):
             self.input_positiontitle.addItem("")
             self.input_positiontitle.setItemText(positiontitle.id - 1, 
                 self._translate('Dialog', positiontitle.name))
+        for salary in self.salaries:
+            self.input_salary.addItem("")
+            self.input_salary.setItemText(salary.id - 1, 
+                self._translate('Dialog', salary.name))
     
     @pyqtSlot(QDate)
     def on_input_birthday_dateChanged(self, date):
@@ -102,6 +109,10 @@ class clerk_create_event(QDialog, Ui_Dialog):
     def on_input_positiontitle_currentIndexChanged(self, index):
         self.selected_positiontitle = self.positiontitles[index]
 
+    @pyqtSlot(int)
+    def on_input_salary_currentIndexChanged(self, index):
+        self.selected_salary = self.salaries[index]
+
     @pyqtSlot()
     def on_button_submit_clicked(self):
         clerk = Clerk(group = self.selected_group,
@@ -109,6 +120,7 @@ class clerk_create_event(QDialog, Ui_Dialog):
             department = self.selected_department,
             position = self.selected_position,
             positiontitle = self.selected_positiontitle,
+            salary = self.selected_salary,
             name = self.input_name.text(), 
             gender = self.input_gender.currentText(),
             email = self.input_email.text(), 

@@ -84,10 +84,12 @@ def create_clerk():
     department = session.query(Department).filter_by(id = 1).first()
     position = session.query(Position).filter_by(id = 1).first()
     positiontitle = session.query(PositionTitle).filter_by(id = 1).first()
+    salary = session.query(Salary).filter_by(id = 1).first()
     clerk = Clerk(recordid = '201501010101', password = '123123',
         group = group, company = company, department = department,
         position = position, positiontitle = positiontitle,
         birthday = datetime.now().strftime('%Y-%m-%d'),
+        salary = salary,
         role = role, name = 'yyyy', gender = '男', nation = '中国', 
         ethnicity = '汉族', faith = '无', politicalstatus = '团员', 
         identification = '110',  education = '12', confirm = 0)
@@ -117,9 +119,9 @@ def insert_all():
     create_group()
     create_company()
     create_position()
-    create_clerk()
     create_salary()
     create_item()
+    create_clerk()
     print('insert finish')
 
 if __name__ == '__main__':
