@@ -9,6 +9,8 @@ from .clerk_query_list import clerk_query_list_event
 from .clerk_create import clerk_create_event
 from .clerk_update_list import clerk_update_list_event
 from .clerk_confirm_list import clerk_confirm_list_event
+from .institute_query import institute_query_event
+from .institute_create_list import institute_create_list_event
 from .salary_query_list import salary_query_list_event
 from .salary_create import salary_create_event
 from .salary_update_list import salary_update_list_event
@@ -23,6 +25,8 @@ class main_event(QMainWindow, Ui_MainWindow):
     clerk_create = None
     clerk_update = None
     clerk_confirm = None
+    institute_query = None
+    institute_create = None
     salary_query = None
     salary_create = None
     salary_update = None
@@ -67,6 +71,16 @@ class main_event(QMainWindow, Ui_MainWindow):
             self.message = message_event(msg = 'Permission Denied')
             self.message.show()
             
+    @pyqtSlot()
+    def on_button_institute_query_clicked(self):
+        self.institute_query = institute_query_event()
+        self.institute_query.show()
+        
+    @pyqtSlot()
+    def on_button_institute_create_clicked(self):
+        self.institute_create = institute_create_list_event()
+        self.institute_create.show()
+
     @pyqtSlot()
     def on_button_salary_query_clicked(self):
         self.salary_query = salary_query_list_event()

@@ -12,7 +12,7 @@ class clerk_query_filter_event(QDialog, Ui_Dialog):
     
     _translate = QCoreApplication.translate
     query_list = None
-    groups = session.query(Group).order_by(Group.id).all()
+    groups = None
     companies = None
     selected_group = None
     selected_company = None
@@ -28,6 +28,7 @@ class clerk_query_filter_event(QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         super(clerk_query_filter_event, self).__init__(parent)
         self.setupUi(self)
+        self.groups = session.query(Group).order_by(Group.id).all()
         for group in self.groups:
             self.input_group.addItem("")
             self.input_group.setItemText(group.id - 1, 

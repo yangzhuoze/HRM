@@ -16,7 +16,7 @@ class clerk_create_event(QDialog, Ui_Dialog):
     
     msg = None
     _translate = QCoreApplication.translate
-    groups = session.query(Group).order_by(Group.id).all()
+    groups = None
     companies = None
     selected_group = None
     selected_company = None
@@ -35,6 +35,7 @@ class clerk_create_event(QDialog, Ui_Dialog):
     def __init__(self, parent=None):
         super(clerk_create_event, self).__init__(parent)
         self.setupUi(self)
+        self.groups = session.query(Group).order_by(Group.id).all()
         self.label_booktime_data.setText((str)(datetime.now())[:19])
         self.label_booker_data.setText(currentApp.getCurrentUser().name)
         for group in self.groups:
@@ -71,7 +72,7 @@ class clerk_create_event(QDialog, Ui_Dialog):
         for i, company in enumerate(self.companies):
             self.input_company.addItem("")
             self.input_company.setItemText(i, self._translate('Dialog', company.name))
-    
+
     @pyqtSlot(str)
     def on_input_company_currentTextChanged(self, p0):
         self.input_department.clear()
