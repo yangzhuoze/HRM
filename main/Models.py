@@ -66,6 +66,10 @@ class Salary(Base):
     booktime = Column(Date(), nullable = False)
     confirm = Column(Boolean(), nullable = False, default = False)
 
+    def __init__(self, **kwargs):
+        super(Salary, self).__init__(**kwargs)
+        self.booktime = datetime.now().strftime('%y-%m-%d %H:%M:%S')
+
 class SalaryItem(Base):
     __tablename__ = 'salaryitem'
 
