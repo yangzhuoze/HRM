@@ -221,7 +221,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -243,7 +243,7 @@ class Ui_MainWindow(object):
         self.button_salary_query.setText(_translate("MainWindow", "薪酬查询"))
         self.button_salary_create.setText(_translate("MainWindow", "薪酬登记"))
         self.button_salary_update.setText(_translate("MainWindow", "薪酬变更"))
-        self.button_salary_confirm.setText(_translate("MainWindow", "薪酬变更"))
+        self.button_salary_confirm.setText(_translate("MainWindow", "薪酬复核"))
         self.button_salary_pay.setText(_translate("MainWindow", "薪酬发放"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_salary), _translate("MainWindow", "薪酬管理"))
         self.label_currentUser.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt;\">当前登陆用户：</span></p></body></html>"))

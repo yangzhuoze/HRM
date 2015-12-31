@@ -19,6 +19,7 @@ from .institute_update_list import institute_update_list_event
 from .salary_query_list import salary_query_list_event
 from .salary_create import salary_create_event
 from .salary_update_list import salary_update_list_event
+from .salary_confirm_list import salary_confirm_list_event
 from .salary_pay_list import salary_pay_list_event
 
 from config import Permission
@@ -41,6 +42,7 @@ class main_event(QMainWindow, Ui_MainWindow):
     salary_query = None
     salary_create = None
     salary_update = None
+    salary_confirm = None
     salary_pay = None
     
     def __init__(self, parent=None):
@@ -132,6 +134,11 @@ class main_event(QMainWindow, Ui_MainWindow):
     def on_button_salary_update_clicked(self):
         self.salary_update = salary_update_list_event()
         self.salary_update.show()
+        
+    @pyqtSlot()
+    def on_button_salary_confirm_clicked(self):
+        self.salary_confirm = salary_confirm_list_event()
+        self.salary_confirm.show()
         
     @pyqtSlot()
     def on_button_salary_pay_clicked(self):
