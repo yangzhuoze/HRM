@@ -52,8 +52,13 @@ class main_event(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_button_human_query_clicked(self):
-        self.clerk_query = clerk_query_list_event()
-        self.clerk_query.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.HUMAN_QUERY == Permission.HUMAN_QUERY):
+            self.clerk_query = clerk_query_list_event()
+            self.clerk_query.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
 
     @pyqtSlot()
     def on_button_human_create_clicked(self):
@@ -87,60 +92,118 @@ class main_event(QMainWindow, Ui_MainWindow):
             
     @pyqtSlot()
     def on_button_position_query_clicked(self):
-        self.position_query = position_query_event()
-        self.position_query.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.POSITION_QUERY == Permission.POSITION_QUERY):
+            self.position_query = position_query_event()
+            self.position_query.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
             
     @pyqtSlot()
     def on_button_position_list_clicked(self):
-        self.position_list = position_list_event()
-        self.position_list.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.POSITION_CREATE == Permission.POSITION_CREATE):
+            self.position_list = position_list_event()
+            self.position_list.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
             
     @pyqtSlot()
     def on_button_role_clicked(self):
-        self.role = role_event()
-        self.role.show()
+        if (currentApp.getCurrentUser().role.permission == 0xFFFF):
+            self.role = role_event()
+            self.role.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
             
     @pyqtSlot()
     def on_button_role_link_list_clicked(self):
-        self.role_link_list = role_link_list_event()
-        self.role_link_list.show()
+        if (currentApp.getCurrentUser().role.permission == 0xFFFF):
+            self.role_link_list = role_link_list_event()
+            self.role_link_list.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
             
     @pyqtSlot()
     def on_button_institute_query_clicked(self):
-        self.institute_query = institute_query_event()
-        self.institute_query.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.INSTITUTE_QUERY == Permission.INSTITUTE_QUERY):
+            self.institute_query = institute_query_event()
+            self.institute_query.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
         
     @pyqtSlot()
     def on_button_institute_create_clicked(self):
-        self.institute_create = institute_create_list_event()
-        self.institute_create.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.INSTITUTE_CREATE == Permission.INSTITUTE_CREATE):
+            self.institute_create = institute_create_list_event()
+            self.institute_create.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
         
     @pyqtSlot()
     def on_button_institute_update_clicked(self):
-        self.institute_update = institute_update_list_event()
-        self.institute_update.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.INSTITUTE_UPDATE == Permission.INSTITUTE_UPDATE):
+            self.institute_update = institute_update_list_event()
+            self.institute_update.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
 
     @pyqtSlot()
     def on_button_salary_query_clicked(self):
-        self.salary_query = salary_query_list_event()
-        self.salary_query.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.SALARY_QUERY == Permission.SALARY_QUERY):
+            self.salary_query = salary_query_list_event()
+            self.salary_query.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
             
     @pyqtSlot()
     def on_button_salary_create_clicked(self):
-        self.salary_create = salary_create_event()
-        self.salary_create.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.SALARY_CREATE == Permission.SALARY_CREATE):
+            self.salary_create = salary_create_event()
+            self.salary_create.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
         
     @pyqtSlot()
     def on_button_salary_update_clicked(self):
-        self.salary_update = salary_update_list_event()
-        self.salary_update.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.SALARY_UPDATE == Permission.SALARY_UPDATE):
+            self.salary_update = salary_update_list_event()
+            self.salary_update.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
         
     @pyqtSlot()
     def on_button_salary_confirm_clicked(self):
-        self.salary_confirm = salary_confirm_list_event()
-        self.salary_confirm.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.SALARY_CONFIRM == Permission.SALARY_CONFIRM):
+            self.salary_confirm = salary_confirm_list_event()
+            self.salary_confirm.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
         
     @pyqtSlot()
     def on_button_salary_pay_clicked(self):
-        self.salary_pay = salary_pay_list_event()
-        self.salary_pay.show()
+        if (currentApp.getCurrentUser().role.permission &
+                Permission.SALARY_CONFIRM == Permission.SALARY_CONFIRM):
+            self.salary_pay = salary_pay_list_event()
+            self.salary_pay.show()
+        else:
+            self.message = message_event(msg = 'Permission Denied')
+            self.message.show()
