@@ -65,6 +65,7 @@ class Salary(Base):
     booker = Column(String(20))
     item = relationship('SalaryItemCost', backref = 'salary', lazy = 'dynamic')
     booktime = Column(Date(), nullable = False)
+    paied = Column(Boolean(), nullable = False, default = False)
     confirm = Column(Boolean(), nullable = False, default = False)
 
     def __init__(self, **kwargs):

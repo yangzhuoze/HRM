@@ -75,7 +75,7 @@ def create_position():
     
 #创建权限和雇员
 def create_clerk():
-    role = Role(name = 'Administrator', permission = 0xFFFFFF)
+    role = Role(name = 'Administrator', permission = 0xFFFF)
     session.add(role)
     session.commit()
     role = session.query(Role).filter_by(id = 1).first()
@@ -121,9 +121,13 @@ def insert_all():
     create_position()
     create_salary()
     create_item()
-    create_clerk()
+    create_clerk() 
     print('insert finish')
 
 if __name__ == '__main__':
-    create_db()
-    insert_all()
+#    create_db()
+#    insert_all()
+    c = session.query(Salary).filter_by(id = 1).first()
+    cs = c.clerks
+    for i in cs:
+        print(i.name)

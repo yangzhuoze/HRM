@@ -15,7 +15,7 @@ class role_event(QDialog, Ui_Dialog):
         roles = session.query(Role).order_by(Role.id).all()
         for i, role in enumerate(roles):
             self.table.insertRow(i)
-            self.table.setItem(i, 0, QTableWidgetItem(role.id))
+            self.table.setItem(i, 0, QTableWidgetItem((str)(role.id)))
             self.table.setItem(i, 1, QTableWidgetItem(role.name))
             button = QPushButton(self.table)
             button.setText('权限变更')
