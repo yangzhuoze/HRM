@@ -31,6 +31,9 @@ class Ui_MainWindow(object):
         self.frame_human_query.setObjectName("frame_human_query")
         self.graphics_human_query = QtWidgets.QGraphicsView(self.frame_human_query)
         self.graphics_human_query.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_human_query.setStyleSheet("border-image: url(:/images/human_query.jpg);\n"
+"")
+        self.graphics_human_query.setResizeAnchor(QtWidgets.QGraphicsView.NoAnchor)
         self.graphics_human_query.setObjectName("graphics_human_query")
         self.button_human_query = QtWidgets.QPushButton(self.frame_human_query)
         self.button_human_query.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -42,6 +45,7 @@ class Ui_MainWindow(object):
         self.frame_human_create.setObjectName("frame_human_create")
         self.graphics_human_create = QtWidgets.QGraphicsView(self.frame_human_create)
         self.graphics_human_create.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_human_create.setStyleSheet("border-image: url(:/images/human_create.jpg);")
         self.graphics_human_create.setObjectName("graphics_human_create")
         self.button_human_create = QtWidgets.QPushButton(self.frame_human_create)
         self.button_human_create.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -53,6 +57,8 @@ class Ui_MainWindow(object):
         self.frame_human_update.setObjectName("frame_human_update")
         self.graphics_human_update = QtWidgets.QGraphicsView(self.frame_human_update)
         self.graphics_human_update.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_human_update.setStyleSheet("border-image: url(:/images/human_update.jpg);\n"
+"")
         self.graphics_human_update.setObjectName("graphics_human_update")
         self.button_human_update = QtWidgets.QPushButton(self.frame_human_update)
         self.button_human_update.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -64,6 +70,8 @@ class Ui_MainWindow(object):
         self.frame_human_confirm.setObjectName("frame_human_confirm")
         self.graphics_human_confirm = QtWidgets.QGraphicsView(self.frame_human_confirm)
         self.graphics_human_confirm.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_human_confirm.setStyleSheet("border-image: url(:/images/human_confirm.jpg);\n"
+"")
         self.graphics_human_confirm.setObjectName("graphics_human_confirm")
         self.button_human_confirm = QtWidgets.QPushButton(self.frame_human_confirm)
         self.button_human_confirm.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -75,6 +83,8 @@ class Ui_MainWindow(object):
         self.frame_position_query.setObjectName("frame_position_query")
         self.graphics_position_query = QtWidgets.QGraphicsView(self.frame_position_query)
         self.graphics_position_query.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_position_query.setStyleSheet("border-image: url(:/images/position_query.jpg);\n"
+"")
         self.graphics_position_query.setObjectName("graphics_position_query")
         self.button_position_query = QtWidgets.QPushButton(self.frame_position_query)
         self.button_position_query.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -86,6 +96,8 @@ class Ui_MainWindow(object):
         self.frame_human_xx.setObjectName("frame_human_xx")
         self.graphics_position_list = QtWidgets.QGraphicsView(self.frame_human_xx)
         self.graphics_position_list.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_position_list.setStyleSheet("border-image: url(:/images/position_list.jpg);\n"
+"")
         self.graphics_position_list.setObjectName("graphics_position_list")
         self.button_position_list = QtWidgets.QPushButton(self.frame_human_xx)
         self.button_position_list.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -97,6 +109,8 @@ class Ui_MainWindow(object):
         self.frame_role.setObjectName("frame_role")
         self.graphics_role = QtWidgets.QGraphicsView(self.frame_role)
         self.graphics_role.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_role.setStyleSheet("border-image: url(:/images/role_list.jpg);\n"
+"")
         self.graphics_role.setObjectName("graphics_role")
         self.button_role = QtWidgets.QPushButton(self.frame_role)
         self.button_role.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -108,6 +122,8 @@ class Ui_MainWindow(object):
         self.frame_role_link_list.setObjectName("frame_role_link_list")
         self.graphics_role_link_list = QtWidgets.QGraphicsView(self.frame_role_link_list)
         self.graphics_role_link_list.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_role_link_list.setStyleSheet("border-image: url(:/images/role.jpg);\n"
+"")
         self.graphics_role_link_list.setObjectName("graphics_role_link_list")
         self.button_role_link_list = QtWidgets.QPushButton(self.frame_role_link_list)
         self.button_role_link_list.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -122,6 +138,7 @@ class Ui_MainWindow(object):
         self.frame_institute_query.setObjectName("frame_institute_query")
         self.graphics_institute_query = QtWidgets.QGraphicsView(self.frame_institute_query)
         self.graphics_institute_query.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_institute_query.setStyleSheet("border-image: url(:/images/ins_query.jpg);")
         self.graphics_institute_query.setObjectName("graphics_institute_query")
         self.button_institute_query = QtWidgets.QPushButton(self.frame_institute_query)
         self.button_institute_query.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -133,6 +150,7 @@ class Ui_MainWindow(object):
         self.frame_institute_create.setObjectName("frame_institute_create")
         self.graphics_institute_create = QtWidgets.QGraphicsView(self.frame_institute_create)
         self.graphics_institute_create.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_institute_create.setStyleSheet("border-image: url(:/images/ins_create.jpg);")
         self.graphics_institute_create.setObjectName("graphics_institute_create")
         self.button_institute_create = QtWidgets.QPushButton(self.frame_institute_create)
         self.button_institute_create.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -144,6 +162,7 @@ class Ui_MainWindow(object):
         self.frame_institute_update.setObjectName("frame_institute_update")
         self.graphics_institute_update = QtWidgets.QGraphicsView(self.frame_institute_update)
         self.graphics_institute_update.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_institute_update.setStyleSheet("border-image: url(:/images/ins_update.jpg);")
         self.graphics_institute_update.setObjectName("graphics_institute_update")
         self.button_institute_update = QtWidgets.QPushButton(self.frame_institute_update)
         self.button_institute_update.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -158,6 +177,7 @@ class Ui_MainWindow(object):
         self.frame_salary_query.setObjectName("frame_salary_query")
         self.graphics_salary_query = QtWidgets.QGraphicsView(self.frame_salary_query)
         self.graphics_salary_query.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_salary_query.setStyleSheet("border-image: url(:/images/salary_query.jpg);")
         self.graphics_salary_query.setObjectName("graphics_salary_query")
         self.button_salary_query = QtWidgets.QPushButton(self.frame_salary_query)
         self.button_salary_query.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -169,6 +189,7 @@ class Ui_MainWindow(object):
         self.frame_salary_create.setObjectName("frame_salary_create")
         self.graphics_salary_create = QtWidgets.QGraphicsView(self.frame_salary_create)
         self.graphics_salary_create.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_salary_create.setStyleSheet("border-image: url(:/images/salary_create.jpg);")
         self.graphics_salary_create.setObjectName("graphics_salary_create")
         self.button_salary_create = QtWidgets.QPushButton(self.frame_salary_create)
         self.button_salary_create.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -180,6 +201,7 @@ class Ui_MainWindow(object):
         self.frame_salary_update.setObjectName("frame_salary_update")
         self.graphics_salary_update = QtWidgets.QGraphicsView(self.frame_salary_update)
         self.graphics_salary_update.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_salary_update.setStyleSheet("border-image: url(:/images/salary_update.jpg);")
         self.graphics_salary_update.setObjectName("graphics_salary_update")
         self.button_salary_update = QtWidgets.QPushButton(self.frame_salary_update)
         self.button_salary_update.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -191,6 +213,7 @@ class Ui_MainWindow(object):
         self.frame_salary_confirm.setObjectName("frame_salary_confirm")
         self.graphics_salary_confirm = QtWidgets.QGraphicsView(self.frame_salary_confirm)
         self.graphics_salary_confirm.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_salary_confirm.setStyleSheet("border-image: url(:/images/salary_confirm.jpg);")
         self.graphics_salary_confirm.setObjectName("graphics_salary_confirm")
         self.button_salary_confirm = QtWidgets.QPushButton(self.frame_salary_confirm)
         self.button_salary_confirm.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -202,6 +225,7 @@ class Ui_MainWindow(object):
         self.frame_salary_pay.setObjectName("frame_salary_pay")
         self.graphics_salary_pay = QtWidgets.QGraphicsView(self.frame_salary_pay)
         self.graphics_salary_pay.setGeometry(QtCore.QRect(0, 0, 131, 121))
+        self.graphics_salary_pay.setStyleSheet("border-image: url(:/images/salary_pay.jpg);")
         self.graphics_salary_pay.setObjectName("graphics_salary_pay")
         self.button_salary_pay = QtWidgets.QPushButton(self.frame_salary_pay)
         self.button_salary_pay.setGeometry(QtCore.QRect(20, 130, 91, 31))
@@ -248,7 +272,6 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_salary), _translate("MainWindow", "薪酬管理"))
         self.label_currentUser.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt;\">当前登陆用户：</span></p></body></html>"))
         self.label_currentUser_data.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt;\">currentUser</span></p></body></html>"))
-
 
 if __name__ == "__main__":
     import sys

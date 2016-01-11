@@ -4,13 +4,13 @@ from sqlalchemy import create_engine
 from main import session
 from main.Models import Base, Group, Company, Department, Clerk, Role,\
     PositionCat, Position, PositionTitle, Salary, SalaryItem, SalaryItemCost
-    
+
 engine = create_engine('mysql+mysqlconnector://root:joze@localhost:3306/hrm')
 
 def create_db():
     Base.metadata.create_all(engine)
     print('create success')
-    
+
 def create_group():
     group1 = Group(name = 'group1')
     group2 = Group(name = 'group2')
@@ -44,18 +44,18 @@ def create_company():
     session.commit()
 
     company = session.query(Company).filter_by(id = 1).first()
-    department1 = Department(name = 'testDepartment', parent = company)
-    department2 = Department(name = 'testDepartment22', parent = company)
+    department1 = Department(name = 'testDepartment在1', parent = company)
+    department2 = Department(name = 'testDepartment22在1', parent = company)
     session.add(department1)
     session.add(department2)
     company4 = session.query(Company).filter_by(id = 4).first()
-    department3 = Department(name = 'testDepartment3', parent = company4)
-    department4 = Department(name = 'testDepartment4', parent = company4)
+    department3 = Department(name = 'testDepartment3在4', parent = company4)
+    department4 = Department(name = 'testDepartment4在4', parent = company4)
     session.add(department3)
     session.add(department4)
     company5 = session.query(Company).filter_by(id = 5).first()
-    department5 = Department(name = 'testDepartment5', parent = company5)
-    department6 = Department(name = 'testDepartment6', parent = company5)
+    department5 = Department(name = 'testDepartment5在5', parent = company5)
+    department6 = Department(name = 'testDepartment6在5', parent = company5)
     session.add(department5)
     session.add(department6)
     session.commit()
@@ -69,10 +69,10 @@ def create_position():
     position = Position(name = '苦逼sell屎2', category = positionCat)
     session.add(position)
     session.commit()
-    positiontitle = PositionTitle(name = '老牌嘴炮王2')
+    positiontitle = PositionTitle(name = '假装有职称')
     session.add(positiontitle)
     session.commit()
-    
+
 #创建权限和雇员
 def create_clerk():
     role = Role(name = 'Administrator', permission = 0xFFFF)
@@ -90,12 +90,12 @@ def create_clerk():
         position = position, positiontitle = positiontitle,
         birthday = datetime.now().strftime('%Y-%m-%d'),
         salary = salary,
-        role = role, name = 'yyyy', gender = '男', nation = '中国', 
-        ethnicity = '汉族', faith = '无', politicalstatus = '团员', 
+        role = role, name = 'yyyy', gender = '男', nation = '中国',
+        ethnicity = '汉族', faith = '无', politicalstatus = '团员',
         identification = '110',  education = '12', confirm = 0)
     session.add(clerk)
     session.commit()
-    
+
 def create_salary():
     clerk = session.query(Clerk).filter_by(id = 1).first()
     salary = Salary(name = 'testSalary', booker = clerk,
@@ -104,7 +104,7 @@ def create_salary():
     session.add(salary)
     session.commit()
 
-    
+
 def create_item():
     salary = session.query(Salary).filter_by(id = 1).first()
     salaryitem = SalaryItem(name = '基本工资')
@@ -114,20 +114,16 @@ def create_item():
         item = salaryitem, cost = 5000)
     session.add(salaryitemcost)
     session.commit()
-    
+
 def insert_all():
     create_group()
     create_company()
     create_position()
     create_salary()
     create_item()
-    create_clerk() 
+    create_clerk()
     print('insert finish')
 
 if __name__ == '__main__':
-#    create_db()
-#    insert_all()
-    c = session.query(Salary).filter_by(id = 1).first()
-    cs = c.clerks
-    for i in cs:
-        print(i.name)
+    create_db()
+    insert_all()

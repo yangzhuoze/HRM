@@ -20,7 +20,7 @@ class salary_pay_list_event(QDialog, Ui_Dialog):
         self.salaries = session.query(Salary).filter_by(paied = 0).all()
         for i, salary in enumerate(self.salaries):
             self.table.insertRow(i)
-            self.table.setItem(i, 0, QTableWidgetItem((str)(id)))
+            self.table.setItem(i, 0, QTableWidgetItem((str)(i + 1)))
             self.table.setItem(i, 1, QTableWidgetItem(salary.name))
             count = 0
             for clerk in salary.clerks:

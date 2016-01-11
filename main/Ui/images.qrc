@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="/">
+    <file>images/human_confirm.jpg</file>
+    <file>images/human_create.jpg</file>
+    <file>images/human_query.jpg</file>
+    <file>images/human_update.jpg</file>
+    <file>images/ins_create.jpg</file>
+    <file>images/ins_query.jpg</file>
+    <file>images/ins_update.jpg</file>
+    <file>images/position_list.jpg</file>
+    <file>images/position_query.jpg</file>
+    <file>images/role_list.jpg</file>
+    <file>images/role.jpg</file>
+    <file>images/salary_confirm.jpg</file>
+    <file>images/salary_create.jpg</file>
+    <file>images/salary_pay.jpg</file>
+    <file>images/salary_query.jpg</file>
+    <file>images/salary_update.jpg</file>
+  </qresource>
+</RCC>
